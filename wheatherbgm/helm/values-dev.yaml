@@ -1,7 +1,7 @@
 namespace: backend-bottle
 
 image:
-  repository: agida0413/backend-bottle-member
+  repository: agida0413/backend-bottle-wheatherbgm
   tag: latest
   pullPolicy: Always
 
@@ -9,9 +9,9 @@ replicaCount: 1
 
 labels:
   partOf: backend-part
-  component: backend-bottle-member
-  name: backend-bottle-member-pod-name
-  instance: backend-bottle-member-pod-instance
+  component: backend-bottle-wheatherbgm
+  name: backend-bottle-wheatherbgm-pod-name
+  instance: backend-bottle-wheatherbgm-pod-instance
   version: "1.0.0"
   managedBy: kubectl
 
@@ -29,25 +29,25 @@ readinessPath: /actuator/health/readiness
 livenessPath: /actuator/health/liveness
 
 envFrom:
-  configMap: backend-bottle-member-config
-  secret: backend-bottle-member-secret
+  configMap: backend-bottle-wheatherbgm-config
+  secret: backend-bottle-wheatherbgm-secret
 
 service:
-  name: backend-bottle-member-service
+  name: backend-bottle-wheatherbgm-service
   port: 80
   targetPort: 8080
   selector:
     partOf: backend-part
-    component: backend-bottle-member
-    name: backend-bottle-member-pod-name
-    instance: backend-bottle-member-pod-instance
+    component: backend-bottle-wheatherbgm
+    name: backend-bottle-wheatherbgm-pod-name
+    instance: backend-bottle-wheatherbgm-pod-instance
     version: "1.0.0"
     managedBy: kubectl
 
 hpa:
   enabled: true
-  name: backend-bottle-member-hpa
-  targetDeployment: backend-bottle-member-pod
+  name: backend-bottle-wheatherbgm-hpa
+  targetDeployment: backend-bottle-wheatherbgm-pod
   minReplicas: 1
   maxReplicas: 2
   cpuUtilization: 70

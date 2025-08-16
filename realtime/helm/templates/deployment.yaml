@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend-bottle-member-pod
+  name: backend-bottle-realtime-pod
   namespace: {{ .Values.namespace }}
   labels:
     {{- toYaml .Values.labels | nindent 4 }}
@@ -18,7 +18,7 @@ spec:
         {{- toYaml .Values.labels | nindent 8 }}
     spec:
       containers:
-        - name: backend-bottle-member-container
+        - name: backend-bottle-realtime-container
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:

@@ -1,8 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: backend-app
-  namespace: backend-app
+  name: backend-bottle
+  namespace: backend-bottle
   annotations:
     #    nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/ssl-redirect: "true"       # http 로 와도 tls
@@ -10,66 +10,52 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: teamgoo-dev.com
+    - host: bottle-story-dev.com
       http:
         paths:
           - path: /api/v1/member
             pathType: Prefix
             backend:
               service:
-                name: backend-member-service
+                name: backend-bottle-member-service
                 port:
                   number: 80
           - path: /oauth2
             pathType: Prefix
             backend:
               service:
-                name: backend-member-service
+                name: backend-bottle-member-service
                 port:
                   number: 80
           - path: /login
             pathType: Prefix
             backend:
               service:
-                name: backend-member-service
+                name: backend-bottle-member-service
                 port:
                   number: 80
-          - path: /api/v1/chat
+          - path: /api/v1/bottle
             pathType: Prefix
             backend:
               service:
-                name: backend-chat-crud-service
+                name: backend-bottle-bottlesv-service
                 port:
                   number: 80
-          - path: /api/v1/analyze
+          - path: /api/v1/realtime
             pathType: Prefix
             backend:
               service:
-                name: backend-analyze-service
+                name: backend-bottle-realtime-service
                 port:
                   number: 80
-          - path: /api/v1/content
+          - path: /api/v1/wheatherbgm
             pathType: Prefix
             backend:
               service:
-                name: backend-content-service
-                port:
-                  number: 80
-          - path: /api/v1/plan
-            pathType: Prefix
-            backend:
-              service:
-                name: backend-plan-service
-                port:
-                  number: 80
-          - path: /api/v1/recruit
-            pathType: Prefix
-            backend:
-              service:
-                name: backend-recruit-service
+                name: backend-bottle-wheatherbgm-service
                 port:
                   number: 80
   tls:                                 # 추가
     - hosts:                           # 추가
-        - teamgoo-dev.com                 # 추가
-      secretName: teamgoo-tls      # 추가
+        - bottle-story-dev.com                 # 추가
+      secretName: bottle-story-tls      # 추가

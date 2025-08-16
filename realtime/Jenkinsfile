@@ -10,7 +10,7 @@ pipeline {
 
         DOCKERHUB_USERNAME = 'agida0413'
         RELEASE_GITHUB_URL = 'https://github.com/Bottle-Story/bottle-story-devops.git'
-        APP_GITHUB_URL = 'https://github.com/Bottle-Story/bottle-story-member.git'
+        APP_GITHUB_URL = 'https://github.com/Bottle-Story/bottle-story-realtime.git'
 
     }
 
@@ -48,8 +48,8 @@ pipeline {
         }
         stage('컨테이너 빌드') {
             steps {
-                    // release/member 폴더로 jar 복사
-                    sh 'cp ./build/libs/bottle-member-dev-0.0.1-SNAPSHOT.jar release/member/'
+                    // release/realtime 폴더로 jar 복사
+                    sh 'cp ./build/libs/bottle-realtime-dev-0.0.1-SNAPSHOT.jar release/realtime/'
 
                 withCredentials([usernamePassword(credentialsId: 'docker_password', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
                     sh '''
@@ -57,7 +57,7 @@ pipeline {
                     '''
                 }
 
-                 sh "docker build -t ${DOCKERHUB_USERNAME}/backend-bottle-member:latest -f release/member/Dockerfile-dev release/member"
+                 sh "docker build -t ${DOCKERHUB_USERNAME}/backend-bottle-realtime:latest -f release/realtime/Dockerfile-dev release/realtime"
 
 
             }
@@ -65,15 +65,15 @@ pipeline {
 
         stage('컨테이너 업로드') {
             steps {
-                sh "docker push ${DOCKERHUB_USERNAME}/backend-bottle-member:latest"
+                sh "docker push ${DOCKERHUB_USERNAME}/backend-bottle-realtime:latest"
             }
         }
 
         stage('쿠버네티스 배포') {
             steps {
                 withCredentials([file(credentialsId: 'k8s_master_config', variable: 'KUBECONFIG')]) {
-                    sh "helm upgrade --install backend-bottle-member release/member/helm \
-                          --values release/member/helm/values-dev.yaml \
+                    sh "helm upgrade --install backend-bottle-realtime release/realtime/helm \
+                          --values release/realtime/helm/values-dev.yaml \
                           --namespace backend-bottle"
                 }
             }

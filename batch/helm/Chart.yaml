@@ -1,0 +1,3 @@
+apiVersion: v2
+name: backend-bottle-batch-chart
+version: 1.0.0
