@@ -1,0 +1,82 @@
+pipeline {
+    agent any
+
+    tools {
+        gradle 'gradle-8.3'
+        jdk 'jdk-17'
+    }
+
+    environment {
+
+        DOCKERHUB_USERNAME = 'agida0413'
+        RELEASE_GITHUB_URL = 'https://github.com/Recruit-Project/project-devops.git'
+        APP_GITHUB_URL = 'https://github.com/Recruit-Project/project-member.git'
+
+    }
+
+    stages {
+        stage('소스파일 체크아웃') {
+            steps {
+                git branch: 'develop', url: "${APP_GITHUB_URL}"
+            }
+        }
+
+        stage('소스 빌드') {
+            steps {
+
+                sh "chmod +x ./gradlew"
+                sh "gradle clean build -x test"
+            }
+        }
+
+        stage('릴리즈파일 체크아웃') {
+            steps {
+                dir('release') {
+                    checkout([$class: 'GitSCM',
+                              branches: [[name: 'main']],
+                              userRemoteConfigs: [[url: "${RELEASE_GITHUB_URL}"]]
+                    ])
+                }
+            }
+        }
+        stage('파일 위치 확인') {
+            steps {
+                sh 'find . -name Dockerfile-dev'
+                        sh 'find . -name "*.jar"'
+                        sh 'ls -lR | grep ".jar"'
+            }
+        }
+        stage('컨테이너 빌드') {
+            steps {
+                    // release/member 폴더로 jar 복사
+                    sh 'cp ./build/libs/project-member-dev-0.0.1-SNAPSHOT.jar release/member/'
+
+                withCredentials([usernamePassword(credentialsId: 'docker_password', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+                    sh '''
+                        echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
+                    '''
+                }
+
+                 sh "docker build -t ${DOCKERHUB_USERNAME}/backend-member:latest -f release/member/Dockerfile-dev release/member"
+
+
+            }
+        }
+
+        stage('컨테이너 업로드') {
+            steps {
+                sh "docker push ${DOCKERHUB_USERNAME}/backend-member:latest"
+            }
+        }
+
+        stage('쿠버네티스 배포') {
+            steps {
+                withCredentials([file(credentialsId: 'k8s_master_config', variable: 'KUBECONFIG')]) {
+                    sh "helm upgrade --install backend-member release/member/helm \
+                          --values release/member/helm/values-dev.yaml \
+                          --namespace backend-app"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.service.name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    part-of: backend-app-services
+    name: {{ .Values.service.name }}
+    version: {{ .Values.service.selector.version }}
+    managed-by: {{ .Values.service.selector.managedBy }}
+spec:
+  selector:
+    partOf: {{ .Values.service.selector.partOf }}
+    component: {{ .Values.service.selector.component }}
+    name: {{ .Values.service.selector.name }}
+    instance: {{ .Values.service.selector.instance }}
+    version: {{ .Values.service.selector.version }}
+    managedBy: {{ .Values.service.selector.managedBy }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
+  type: ClusterIP

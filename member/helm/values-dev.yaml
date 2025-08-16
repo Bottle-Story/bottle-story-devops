@@ -1,0 +1,54 @@
+namespace: backend-app
+
+image:
+  repository: agida0413/backend-member
+  tag: latest
+  pullPolicy: Always
+
+replicaCount: 1
+
+labels:
+  partOf: backend-part
+  component: backend-member
+  name: backend-member-pod-name
+  instance: backend-member-pod-instance
+  version: "1.0.0"
+  managedBy: kubectl
+
+containerPort: 8080
+
+resources:
+  limits:
+    memory: "512Mi"
+    cpu: "400"
+  requests:
+    memory: "256Mi"
+    cpu: "250m"
+
+readinessPath: /actuator/health/readiness
+livenessPath: /actuator/health/liveness
+
+envFrom:
+  configMap: backend-member-config
+  secret: backend-member-secret
+
+service:
+  name: backend-member-service
+  port: 80
+  targetPort: 8080
+  selector:
+    partOf: backend-part
+    component: backend-member
+    name: backend-member-pod-name
+    instance: backend-member-pod-instance
+    version: "1.0.0"
+    managedBy: kubectl
+
+hpa:
+  enabled: true
+  name: backend-member-hpa
+  targetDeployment: backend-member-pod
+  minReplicas: 1
+  maxReplicas: 2
+  cpuUtilization: 70
+  memoryUtilization: 70

@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: backend-app
+  name: backend-member-service
+  labels:
+    part-of: backend-app-services
+    name: backend-member-service
+    version: 1.0.0
+    managed-by: kubectl
+spec:
+  selector:
+    part-of: backend-part
+    component: backend-member
+    name: backend-member-pod-name
+    instance: backend-member-pod-instance
+    version: 1.0.0
+    managed-by: kubectl
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: ClusterIp

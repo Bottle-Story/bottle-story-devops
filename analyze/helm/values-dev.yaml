@@ -1,0 +1,54 @@
+namespace: backend-app
+
+image:
+  repository: agida0413/backend-analyze
+  tag: latest
+  pullPolicy: Always
+
+replicaCount: 1
+
+labels:
+  partOf: backend-part
+  component: backend-analyze
+  name: backend-analyze-pod-name
+  instance: backend-analyze-pod-instance
+  version: "1.0.0"
+  managedBy: kubectl
+
+containerPort: 8080
+
+resources:
+  limits:
+    memory: "512Mi"
+    cpu: "400"
+  requests:
+    memory: "256Mi"
+    cpu: "250m"
+
+readinessPath: /actuator/health/readiness
+livenessPath: /actuator/health/liveness
+
+envFrom:
+  configMap: backend-analyze-config
+  secret: backend-analyze-secret
+
+service:
+  name: backend-analyze-service
+  port: 80
+  targetPort: 8080
+  selector:
+    partOf: backend-part
+    component: backend-analyze
+    name: backend-analyze-pod-name
+    instance: backend-analyze-pod-instance
+    version: "1.0.0"
+    managedBy: kubectl
+
+hpa:
+  enabled: true
+  name: backend-analyze-hpa
+  targetDeployment: backend-analyze-pod
+  minReplicas: 1
+  maxReplicas: 2
+  cpuUtilization: 70
+  memoryUtilization: 70

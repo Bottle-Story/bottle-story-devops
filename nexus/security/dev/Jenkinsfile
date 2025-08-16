@@ -1,0 +1,48 @@
+pipeline {
+    agent any
+
+    tools {
+        gradle 'gradle-8.3'
+        jdk 'jdk-17'
+    }
+
+    environment {
+        APP_GITHUB_URL = 'https://github.com/Bottle-Story/bottle-story-security.git'
+        RELEASE_GITHUB_URL = 'https://github.com/Bottle-Story/bottle-story-devops.git'
+        APP_VERSION = '0.0.1'
+    }
+
+    stages {
+        stage('소스파일 체크아웃') {
+            steps {
+                git branch: 'develop', url: "${APP_GITHUB_URL}"
+            }
+        }
+
+        stage('소스 빌드') {
+            steps {
+                sh "chmod +x ./gradlew"
+                sh "gradle clean build -x test"
+            }
+        }
+
+        stage('릴리즈파일 체크아웃') {
+                steps {
+                    dir('release') {
+                        checkout([$class: 'GitSCM',
+                                  branches: [[name: 'main']],
+                                  userRemoteConfigs: [[url: "${RELEASE_GITHUB_URL}"]]
+                        ])
+                    }
+                }
+        }
+
+        stage('넥서스 배포') {
+                steps {
+                    sh 'ls -al' // 디버깅용: gradlew 있는지 확인
+                    sh 'chmod +x ./gradlew'
+                    sh './gradlew --refresh-dependencies publish'
+                }
+        }
+    }
+}

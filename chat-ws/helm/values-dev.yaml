@@ -1,0 +1,54 @@
+namespace: backend-app
+
+image:
+  repository: agida0413/backend-chat-ws
+  tag: latest
+  pullPolicy: Always
+
+replicaCount: 1
+
+labels:
+  partOf: backend-part
+  component: backend-chat-ws
+  name: backend-chat-ws-pod-name
+  instance: backend-chat-ws-pod-instance
+  version: "1.0.0"
+  managedBy: kubectl
+
+containerPort: 8080
+
+resources:
+  limits:
+    memory: "512Mi"
+    cpu: "400"
+  requests:
+    memory: "256Mi"
+    cpu: "250m"
+
+readinessPath: /actuator/health/readiness
+livenessPath: /actuator/health/liveness
+
+envFrom:
+  configMap: backend-chat-ws-config
+  secret: backend-chat-ws-secret
+
+service:
+  name: backend-chat-ws-service
+  port: 80
+  targetPort: 8080
+  selector:
+    partOf: backend-part
+    component: backend-chat-ws
+    name: backend-chat-ws-pod-name
+    instance: backend-chat-ws-pod-instance
+    version: "1.0.0"
+    managedBy: kubectl
+
+hpa:
+  enabled: true
+  name: backend-chat-ws-hpa
+  targetDeployment: backend-chat-ws-pod
+  minReplicas: 1
+  maxReplicas: 2
+  cpuUtilization: 70
+  memoryUtilization: 70

@@ -1,0 +1,84 @@
+pipeline {
+    agent any
+
+    tools {
+        gradle 'gradle-7.6.1'
+        jdk 'jdk-17'
+    }
+
+    environment {
+        // 본인의 DockerHub username로 수정 해주세요.
+        DOCKERHUB_USERNAME = 'kimyong120413'
+        // 배포용 Github - Sprint3를 Fork 후 Username 변경 해주세요.
+        RELEASE_GITHUB_URL = 'https://github.com/testkimyj0413/test-devops.git'
+        // App용 Github - Api-Tester App 소스코드를 Fork 후 Username 변경 해주세요.
+        APP_GITHUB_URL = 'https://github.com/testkimyj0413/test-1.git'
+
+        APP_VERSION = '3.0.0'
+        // 실습 넘버링
+        CLASS_NUM = '3211'
+    }
+
+    stages {
+        stage('소스파일 체크아웃') {
+            steps {
+                git branch: 'main', url: "${APP_GITHUB_URL}"
+            }
+        }
+
+        stage('소스 빌드') {
+            steps {
+                // 755권한 필요 (윈도우에서 Git으로 소스 업로드시 권한은 644)
+	   
+                sh "chmod +x ./gradlew"
+                sh "gradle clean build -x test"
+            }
+        }
+
+        stage('릴리즈파일 체크아웃') {
+            steps {
+                 checkout([$class: 'GitSCM',
+                           branches: [[name: 'main']],
+                           userRemoteConfigs: [[url: "${RELEASE_GITHUB_URL}"]]
+                 ])
+            }
+        }
+
+        stage('컨테이너 빌드') {
+            steps {
+		     sh 'mkdir -p ./build/docker'   // 디렉터리 생성        
+                // jar 파일 복사
+                sh "cp ./build/libs/demo-0.0.1-SNAPSHOT.jar ./build/docker/demo-0.0.1-SNAPSHOT.jar"
+		// 도커 로그인
+                 withCredentials([usernamePassword(credentialsId: 'docker_password', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+                        sh "echo " + '${PASSWORD}' + " | docker login -u " + '${USERNAME}' + " --password-stdin"
+                }
+                // 도커 빌드
+                sh "docker build -t ${DOCKERHUB_USERNAME}/backend-app-1:latest ./build/docker"
+            }
+        }
+
+        stage('컨테이너 업로드') {
+            steps {
+
+                // DockerHub로 이미지 업로드
+                script{
+                    sh "docker push ${DOCKERHUB_USERNAME}/backend-app-1:latest"
+                }
+            }
+        }
+
+        stage('쿠버네티스 배포') {
+            steps {
+	withCredentials([file(credentialsId: 'k8s_master_config', variable: 'KUBECONFIG')]) {
+                // K8S 배포
+                sh "kubectl apply -f ./app-1/ingress.yaml"
+                sh "kubectl apply -f ./app-1/configmap.yaml"
+                sh "kubectl apply -f ./app-1/secret.yaml"
+                sh "kubectl apply -f ./app-1/service.yaml"
+                sh "kubectl apply -f ./app-1/deployment.yaml"
+            	}
+	    }
+        }
+    }
+}

@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: backend-app
+  name: backend-member-pod
+  labels:
+    part-of: backend-part
+    component: backend-member
+    name: backend-member-pod-name
+    instance: backend-member-pod-instance
+    version: 1.0.0
+    managed-by: kubectl
+spec:
+  selector:
+    matchLabels:
+      part-of: backend-part
+      component: backend-member
+      name: backend-member-pod-name
+      instance: backend-member-pod-instance
+      version: 1.0.0
+      managed-by: kubectl
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        part-of: backend-part
+        component: backend-member
+        name: backend-member-pod-name
+        instance: backend-member-pod-instance
+        version: 1.0.0
+        managed-by: kubectl
+    spec:
+      containers:
+        - name: backend-member-container
+          image: agida0413/backend-member:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: http
+          envFrom:
+            - configMapRef:
+                name: backend-member-config
+            - secretRef:
+                name: backend-member-secret
+          readinessProbe:
+            httpGet:
+              path: "/actuator/health/readiness"
+              port: 8080
+            periodSeconds: 10
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: "/actuator/health/liveness"
+              port: 8080
+            periodSeconds: 10
+            failureThreshold: 3
+          resources:
+            requests:
+              memory: "100Mi"
+              cpu: "100m"
+            limits:
+              memory: "200Mi"
+              cpu: "200m"
+
