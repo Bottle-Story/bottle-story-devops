@@ -4,60 +4,48 @@ pipeline {
     environment {
         DOCKERHUB_USERNAME = 'agida0413'
         SOURCE_REPO = 'https://github.com/Bottle-Story/bottle-story-frontend.git'
-        DEVOPS_REPO = 'https://github.com/Bottle-Story/bottle-story-devops.git'
-        FRONTEND_DIR = 'frontend'
-        WEB_SRC_DIR = 'web-src'
+        DEVOPS_REPO  = 'https://github.com/Bottle-Story/bottle-story-devops.git'
+        DEVOPS_DIR   = 'frontend'
     }
 
     stages {
-        stage('프론트엔드 소스 체크아웃') {
+        stage('소스 레포 체크아웃') {
             steps {
-                dir("${WEB_SRC_DIR}") {
+                dir('web-src') {
                     git branch: 'develop', url: "${SOURCE_REPO}"
                 }
             }
         }
 
-        stage('DevOps 레포 체크아웃') {
+        stage('데브옵스 레포 체크아웃') {
             steps {
-                dir("${FRONTEND_DIR}") {
+                dir("${DEVOPS_DIR}") {
                     git branch: 'main', url: "${DEVOPS_REPO}"
                 }
             }
         }
 
-        stage('소스 복사') {
+        stage('소스 파일 복사') {
             steps {
                 sh """
-                    # 기존 frontend 소스 제거 후 web-src 복사
-                    rsync -av --delete ${WEB_SRC_DIR}/ ${FRONTEND_DIR}/
+                    # 데브옵스 폴더 안으로 web-src 복사
+                    rm -rf ${DEVOPS_DIR}/web
+                    cp -r web-src/web ${DEVOPS_DIR}/
                 """
             }
         }
-stage('Dockerfile 확인') {
-    steps {
-        dir("${FRONTEND_DIR}") {
-            sh 'ls -l'
-        }
-    }
-}
-stage('Dockerfile 확인2') {
-    steps {
-        dir("${FRONTEND_DIR}") {
-          sh 'find . -name "Dockerfile*"'
-        }
-    }
-}
+
         stage('Docker 이미지 빌드 및 Push') {
             steps {
-                dir("${FRONTEND_DIR}") {
+                dir("${DEVOPS_DIR}") {
                     withCredentials([usernamePassword(credentialsId: 'docker_password', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                         sh '''
                             echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
-                            docker build -t ${DOCKERHUB_USERNAME}/frontend-bottle:latest -f Dockerfile-dev .
-                            docker push ${DOCKERHUB_USERNAME}/frontend-bottle:latest
                         '''
                     }
+
+                    sh "docker build -t ${DOCKERHUB_USERNAME}/frontend-bottle:latest -f Dockerfile-dev ."
+                    sh "docker push ${DOCKERHUB_USERNAME}/frontend-bottle:latest"
                 }
             }
         }
@@ -66,8 +54,8 @@ stage('Dockerfile 확인2') {
             steps {
                 withCredentials([file(credentialsId: 'k8s_master_config', variable: 'KUBECONFIG')]) {
                     sh """
-                        helm upgrade --install frontend-bottle ${FRONTEND_DIR}/helm \
-                        --values ${FRONTEND_DIR}/helm/values-dev.yaml \
+                        helm upgrade --install frontend-bottle ${DEVOPS_DIR}/helm \
+                        --values ${DEVOPS_DIR}/helm/values-dev.yaml \
                         --namespace frontend-bottle
                     """
                 }
