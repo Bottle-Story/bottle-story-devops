@@ -18,20 +18,7 @@ pipeline {
         // 실습 넘버링
         CLASS_NUM = '3211'
     }
-stage('Dockerfile 확인') {
-    steps {
-        dir("${FRONTEND_DIR}") {
-            sh 'ls -l'
-        }
-    }
-}
-stage('Dockerfile 확인2') {
-    steps {
-        dir("${FRONTEND_DIR}") {
-          sh 'find . -name "Dockerfile*"'
-        }
-    }
-}
+
     stages {
         stage('소스파일 체크아웃') {
             steps {
