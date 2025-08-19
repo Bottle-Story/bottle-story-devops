@@ -56,7 +56,7 @@ pipeline {
                     sh """
                         helm upgrade --install frontend-bottle ${DEVOPS_DIR}/helm \
                         --values ${DEVOPS_DIR}/helm/values-dev.yaml \
-                        --namespace frontend-bottle
+                        --namespace backend-bottle
                     """
                 }
             }
