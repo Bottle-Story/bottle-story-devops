@@ -8,7 +8,7 @@ image:
 replicaCount: 1
 
 labels:
-  part-of: frontend-part
+  partOf: frontend-part
   component: frontend-bottle
   name: frontend-bottle-pod-name
   instance: frontend-bottle-pod-instance
@@ -31,7 +31,7 @@ service:
   port: 80
   targetPort: 80
   selector:
-    part-of: frontend-part
+    partOf: frontend-part
     component: frontend-bottle
     name: frontend-bottle-pod-name
     instance: frontend-bottle-pod-instance
