@@ -11,7 +11,8 @@ pipeline {
     stages {
         stage('소스 레포 체크아웃') {
             steps {
-                dir('web-src') {
+                // frontend 레포지토리에서 develop 브랜치 체크아웃
+                dir("${FRONTEND_DIR}") {
                     git branch: 'develop', url: "${SOURCE_REPO}"
                 }
             }
@@ -19,32 +20,24 @@ pipeline {
 
         stage('데브옵스 레포 체크아웃') {
             steps {
+                // devops 레포지토리에서 main 브랜치 체크아웃
                 dir("${FRONTEND_DIR}") {
                     git branch: 'main', url: "${DEVOPS_REPO}"
                 }
             }
         }
 
-        stage('소스 파일 복사') {
-            steps {
-                sh """
-                    # frontend 폴더 덮어쓰기 (기존 파일 제거 포함)
-                    rsync -av --delete web-src/ ${FRONTEND_DIR}/
-                """
-            }
-        }
-
         stage('Docker 이미지 빌드 및 Push') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'docker_password', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    sh '''
-                        echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
-                    '''
-                }
+                dir("${FRONTEND_DIR}") {
+                    withCredentials([usernamePassword(credentialsId: 'docker_password', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                        sh 'echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin'
+                    }
 
-                // Dockerfile 경로와 빌드 컨텍스트 명확히 지정
-                sh "docker build -t ${DOCKERHUB_USERNAME}/frontend-bottle:latest -f ${FRONTEND_DIR}/Dockerfile-dev ${FRONTEND_DIR}"
-                sh "docker push ${DOCKERHUB_USERNAME}/frontend-bottle:latest"
+                    // Dockerfile-dev를 기준으로 빌드 컨텍스트는 frontend/
+                    sh "docker build -t ${DOCKERHUB_USERNAME}/frontend-bottle:latest -f Dockerfile-dev ."
+                    sh "docker push ${DOCKERHUB_USERNAME}/frontend-bottle:latest"
+                }
             }
         }
 
