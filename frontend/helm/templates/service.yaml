@@ -10,7 +10,7 @@ metadata:
     managed-by: {{ .Values.service.selector.managedBy }}
 spec:
   selector:
-    part-of: {{ .Values.service.selector.partOf }}
+    part-of: {{ .Values.service.selector.part-of }}
     component: {{ .Values.service.selector.component }}
     name: {{ .Values.service.selector.name }}
     instance: {{ .Values.service.selector.instance }}
