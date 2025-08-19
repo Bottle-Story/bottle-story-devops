@@ -1,13 +1,12 @@
-# 1단계: React build
+# 1단계: React 앱 빌드
 FROM node:18 AS builder
 WORKDIR /app
 
-# package.json 복사 후 설치
-COPY package*.json ./
-RUN npm ci
+# 소스 전체 복사 (web-src에서 Jenkins가 복사해온 상태)
+COPY . .
 
-# 소스 전체 복사
-COPY . ./
+# 의존성 설치 및 빌드
+RUN npm install
 RUN npm run build
 
 # 2단계: Nginx
