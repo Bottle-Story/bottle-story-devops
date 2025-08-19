@@ -28,14 +28,11 @@ pipeline {
         stage('소스 파일 복사') {
             steps {
                 sh """
-                    # 기존 frontend 소스 제거 후 web-src 복사
-                    rm -rf ${FRONTEND_DIR}/web-src-temp
-                    mkdir -p ${FRONTEND_DIR}/web-src-temp
-                    cp -r web-src/* ${FRONTEND_DIR}/web-src-temp/
-                    mv ${FRONTEND_DIR}/web-src-temp/* ${FRONTEND_DIR}/
+                    # rsync로 기존 frontend 폴더 덮어쓰기
+                    rsync -av --delete web-src/ ${FRONTEND_DIR}/
                 """
             }
-        }
+}
 
         stage('Docker 이미지 빌드 및 Push') {
             steps {
