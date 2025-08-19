@@ -1,0 +1,48 @@
+namespace: backend-bottle
+
+image:
+  repository: agida0413/frontend-bottle
+  tag: latest
+  pullPolicy: Always
+
+replicaCount: 1
+
+labels:
+  partOf: frontend-part
+  component: frontend-bottle
+  name: frontend-bottle-pod-name
+  instance: frontend-bottle-pod-instance
+  version: "1.0.0"
+  managedBy: kubectl
+
+containerPort: 80
+
+resources:
+  limits:
+    memory: "512Mi"
+    cpu: "400m"
+  requests:
+    memory: "256Mi"
+    cpu: "250m"
+
+
+service:
+  name: frontend-service
+  port: 80
+  targetPort: 80
+  selector:
+    partOf: frontend-part
+    component: frontend-bottle
+    name: frontend-bottle-pod-name
+    instance: frontend-bottle-pod-instance
+    version: "1.0.0"
+    managedBy: kubectl
+
+hpa:
+  enabled: true
+  name: frontend-bottle-hpa
+  targetDeployment: frontend-bottle-pod
+  minReplicas: 1
+  maxReplicas: 2
+  cpuUtilization: 70
+  memoryUtilization: 70

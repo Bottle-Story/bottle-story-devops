@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.service.name }}
   namespace: {{ .Values.namespace }}
   labels:
-    part-of: backend-app-services
+    part-of: frontend-services
     name: {{ .Values.service.name }}
     version: {{ .Values.service.selector.version }}
     managed-by: {{ .Values.service.selector.managedBy }}

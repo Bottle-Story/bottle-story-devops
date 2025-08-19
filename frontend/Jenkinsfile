@@ -1,0 +1,67 @@
+pipeline {
+    agent any
+
+    environment {
+        DOCKERHUB_USERNAME = 'agida0413'
+        SOURCE_REPO = 'https://github.com/Bottle-Story/bottle-story-frontend.git'
+        DEVOPS_REPO = 'https://github.com/Bottle-Story/bottle-story-devops.git'
+        FRONTEND_DIR = 'frontend'
+    }
+
+    stages {
+        stage('소스 레포 체크아웃') {
+            steps {
+                dir('web-src') {
+                    git branch: 'develop', url: "${SOURCE_REPO}"
+                }
+            }
+        }
+
+        stage('데브옵스 레포 체크아웃') {
+            steps {
+                dir("${FRONTEND_DIR}") {
+                    git branch: 'main', url: "${DEVOPS_REPO}"
+                }
+            }
+        }
+
+        stage('소스 파일 복사') {
+            steps {
+                sh """
+                    # 기존 frontend 소스 제거 후 web-src 복사
+                    rm -rf ${FRONTEND_DIR}/web-src-temp
+                    mkdir -p ${FRONTEND_DIR}/web-src-temp
+                    cp -r web-src/* ${FRONTEND_DIR}/web-src-temp/
+                    mv ${FRONTEND_DIR}/web-src-temp/* ${FRONTEND_DIR}/
+                """
+            }
+        }
+
+        stage('Docker 이미지 빌드 및 Push') {
+            steps {
+                dir("${FRONTEND_DIR}") {
+                    withCredentials([usernamePassword(credentialsId: 'docker_password', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                        sh '''
+                            echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
+                        '''
+                    }
+
+                    sh "docker build -t ${DOCKERHUB_USERNAME}/frontend-bottle:latest -f Dockerfile-dev ."
+                    sh "docker push ${DOCKERHUB_USERNAME}/frontend-bottle:latest"
+                }
+            }
+        }
+
+        stage('쿠버네티스 배포') {
+            steps {
+                withCredentials([file(credentialsId: 'k8s_master_config', variable: 'KUBECONFIG')]) {
+                    sh """
+                        helm upgrade --install frontend-bottle ${FRONTEND_DIR}/helm \
+                        --values ${FRONTEND_DIR}/helm/values-dev.yaml \
+                        --namespace frontend-bottle
+                    """
+                }
+            }
+        }
+    }
+}
