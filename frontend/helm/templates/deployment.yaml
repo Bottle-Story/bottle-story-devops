@@ -24,6 +24,22 @@ spec:
           ports:
             - containerPort: {{ .Values.containerPort }}
               name: http
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.readinessPath }}
+              port: {{ .Values.containerPort }}
+            initialDelaySeconds: 5
+            periodSeconds: 15
+            timeoutSeconds: 5
+            failureThreshold: 5
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.livenessPath }}
+              port: {{ .Values.containerPort }}
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            timeoutSeconds: 5
+            failureThreshold: 3
           resources:
             requests:
               memory: {{ .Values.resources.requests.memory }}

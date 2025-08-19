@@ -7,6 +7,9 @@ image:
 
 replicaCount: 1
 
+readinessPath: /
+livenessPath: /
+
 labels:
   partOf: frontend-part
   component: frontend-bottle
