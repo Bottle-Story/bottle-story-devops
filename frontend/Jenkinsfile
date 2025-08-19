@@ -37,16 +37,15 @@ pipeline {
 
         stage('Docker 이미지 빌드 및 Push') {
             steps {
-                sh """
-                    echo "Docker 로그인"
-                    echo '${DOCKERHUB_PASSWORD}' | docker login -u '${DOCKERHUB_USERNAME}' --password-stdin
-
-                    echo "Docker 이미지 빌드"
-                    docker build -t ${DOCKERHUB_USERNAME}/frontend-bottle:latest -f ${FRONTEND_DIR}/Dockerfile-dev ${FRONTEND_DIR}
-
-                    echo "Docker 이미지 푸시"
-                    docker push ${DOCKERHUB_USERNAME}/frontend-bottle:latest
-                """
+                dir("${FRONTEND_DIR}") {
+                    withCredentials([usernamePassword(credentialsId: 'docker_password', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                        sh '''
+                            echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
+                            docker build -t ${DOCKERHUB_USERNAME}/frontend-bottle:latest -f Dockerfile-dev .
+                            docker push ${DOCKERHUB_USERNAME}/frontend-bottle:latest
+                        '''
+                    }
+                }
             }
         }
 
