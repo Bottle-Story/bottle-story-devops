@@ -54,7 +54,7 @@ pipeline {
                         sh "echo " + '${PASSWORD}' + " | docker login -u " + '${USERNAME}' + " --password-stdin"
                 }
                 // 도커 빌드
-                sh "docker build -t ${DOCKERHUB_USERNAME}/backend-app-1:latest ./build/docker"
+                sh "docker build --no-cache -t ${DOCKERHUB_USERNAME}/backend-app-1:latest ./build/docker"
             }
         }
 
