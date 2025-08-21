@@ -7,6 +7,8 @@ COPY web/ ./web
 WORKDIR /app/web
 
 RUN npm install --legacy-peer-deps
+ARG REACT_APP_ENV=staging
+ENV REACT_APP_ENV=$REACT_APP_ENV
 RUN npm run build
 
 # 2단계: Nginx
