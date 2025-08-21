@@ -44,7 +44,7 @@ pipeline {
                         '''
                     }
 
-                    sh "docker build -t ${DOCKERHUB_USERNAME}/frontend-bottle:latest -f Dockerfile-dev ."
+                    sh "docker build --no-cache -t ${DOCKERHUB_USERNAME}/frontend-bottle:latest -f Dockerfile-dev ."
                     sh "docker push ${DOCKERHUB_USERNAME}/frontend-bottle:latest"
                 }
             }
