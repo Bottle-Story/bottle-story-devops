@@ -8,7 +8,7 @@ image:
 replicaCount: 1
 
 labels:
-  partOf: backend-part
+  part-of: backend-part
   component: backend-bottle-member
   name: backend-bottle-member-pod-name
   instance: backend-bottle-member-pod-instance
