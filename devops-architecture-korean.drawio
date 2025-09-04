@@ -1,0 +1,306 @@
+<mxfile host="app.diagrams.net" agent="5.0" version="24.7.17">
+  <diagram name="DevOps Architecture" id="devops-architecture">
+    <mxGraphModel dx="2074" dy="1129" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <mxCell id="title" value="유리병 속 이야기 - DevOps 아키텍처" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=28;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="527" y="20" width="600" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="tailscale-network" value="TailScale VPN 네트워크" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=20;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="80" y="80" width="1494" height="1009" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="infra-laptop" value="인프라 노트북" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=18;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="120" y="120" width="1414" height="929" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="virtualbox" value="VirtualBox 환경" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=16;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="160" y="160" width="1334" height="849" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="docker-compose" value="Docker Compose 서비스들" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=16;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="200" y="200" width="300" height="280" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="mysql" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="220" y="230" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="mysql-label" value="MySQL&#xa;:3306" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="215" y="285" width="60" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="redis" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="300" y="230" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="redis-label" value="Redis&#xa;:6379" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="295" y="285" width="60" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="kafka" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="380" y="230" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="kafka-label" value="Kafka&#xa;:9092" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="375" y="285" width="60" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="nexus" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://help.sonatype.com/repomanager3/files/3146493/3146494/1/1542061234631/nexus-icon.png;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="220" y="340" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="nexus-label" value="Nexus 저장소&#xa;:9090" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="190" y="395" width="110" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="artifacts" value="Core.jar&#xa;Security.jar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="320" y="340" width="80" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="devtools-server" value="개발도구 서버" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=16;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="560" y="200" width="200" height="280" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="jenkins" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="635" y="240" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="jenkins-label" value="Jenkins CI/CD&#xa;파이프라인" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="610" y="295" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="git-repos" value="Git 저장소들&#xa;(MSA 다중 저장소)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="580" y="350" width="160" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="k8s-cluster" value="쿠버네티스 클러스터" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=18;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="820" y="200" width="634" height="760" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="master-node" value="마스터 노드" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=16;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="860" y="240" width="200" height="180" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="k8s-api" value="API 서버" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="880" y="270" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="k8s-scheduler" value="스케줄러" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="970" y="270" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="k8s-controller" value="컨트롤러" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="880" y="310" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="k8s-etcd" value="etcd" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="970" y="310" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="worker1" value="워커 노드 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=16;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="240" width="154" height="340" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="worker2" value="워커 노드 2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=16;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="240" width="154" height="340" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="nginx-ingress" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="960" y="450" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="nginx-label" value="Nginx 인그레스&#xa;컨트롤러" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="940" y="505" width="90" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="frontend-pod" value="프론트엔드 파드" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="270" width="114" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="member-pod" value="회원 파드" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="310" width="114" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="bottle-pod" value="유리병 파드" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="350" width="114" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="realtime-pod" value="실시간 파드" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="270" width="114" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="batch-pod" value="배치 파드" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="310" width="114" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="weather-pod" value="날씨 BGM 파드" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="350" width="114" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="hpa" value="HPA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="410" width="114" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="hpa2" value="HPA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="410" width="114" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="k8s-services" value="쿠버네티스 서비스들" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=16;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="860" y="600" width="594" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="svc-frontend" value="프론트엔드-svc" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="880" y="630" width="90" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="svc-member" value="회원-svc" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="980" y="630" width="90" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="svc-bottle" value="유리병-svc" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="630" width="90" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="svc-realtime" value="실시간-svc" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="630" width="90" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="svc-batch" value="배치-svc" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="880" y="670" width="90" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="svc-weather" value="날씨-svc" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="980" y="670" width="90" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="helm" value="Helm 차트" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="580" y="420" width="160" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="dockerhub" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="200" y="520" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="dockerhub-label" value="Docker Hub&#xa;레지스트리" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="175" y="575" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="external-access" value="외부 개발자 접근&#xa;(TailScale VPN 필요)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="1020" width="300" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="jenkins-git" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="jenkins" target="git-repos">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="680" y="320" as="sourcePoint" />
+            <mxPoint x="680" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="jenkins-docker" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="jenkins" target="dockerhub">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="520" y="400" as="sourcePoint" />
+            <mxPoint x="570" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="jenkins-k8s" value="Helm 배포" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="helm" target="k8s-api">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="750" y="440" as="sourcePoint" />
+            <mxPoint x="860" y="285" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="nexus-msa" value="Gradle Pull" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="artifacts">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="365" as="sourcePoint" />
+            <mxPoint x="1140" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="docker-k8s" value="외부 접근" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="docker-compose" target="k8s-services">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="500" y="340" as="sourcePoint" />
+            <mxPoint x="1157" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="ingress-services" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="nginx-ingress" target="k8s-services">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="980" y="550" as="sourcePoint" />
+            <mxPoint x="1157" y="600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="legend" value="범례" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=16;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="200" y="740" width="300" height="200" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-infra" value="🏠 인프라 계층" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="220" y="760" width="150" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-k8s" value="☸️ 쿠버네티스 리소스" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="220" y="780" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-msa" value="📦 MSA 서비스" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="220" y="800" width="150" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-cicd" value="🔄 CI/CD 파이프라인" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="220" y="820" width="170" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-external" value="🌐 외부 서비스" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="220" y="840" width="150" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-network" value="🔒 TailScale VPN 네트워크" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="220" y="860" width="220" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-hpa" value="📈 자동 스케일링 (HPA)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="220" y="880" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="notes" value="아키텍처 참고사항" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=16;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="560" y="740" width="300" height="200" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="note1" value="• VirtualBox: 4개 VM (마스터 1개, 워커 2개, 개발도구 1개)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="580" y="760" width="260" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="note2" value="• Docker Compose: MySQL, Redis, Kafka, Nexus" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="580" y="780" width="260" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="note3" value="• Jenkins: 모든 MSA 서비스 CI/CD 파이프라인" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="580" y="800" width="260" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="note4" value="• Nexus: Core.jar + Security.jar 배포" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="580" y="820" width="260" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="note5" value="• K8s: Helm 차트 + HPA + Nginx 인그레스" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="580" y="840" width="260" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="note6" value="• 네트워크: TailScale VPN으로 보안 접근" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="580" y="860" width="260" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="note7" value="• MSA: 6개 서비스 (프론트엔드, 회원, 유리병, 실시간, 배치, 날씨)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="580" y="880" width="260" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="note8" value="• 모니터링: Prometheus + Actuator 엔드포인트" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="580" y="900" width="260" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="network-info" value="네트워크 정보&#xa;Nexus: 192.168.56.1:9090&#xa;TailScale VPN: 보안 오버레이 네트워크&#xa;K8s 내부: 서비스 디스커버리" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="920" y="740" width="200" height="80" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

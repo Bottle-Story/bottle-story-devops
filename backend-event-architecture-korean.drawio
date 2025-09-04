@@ -1,0 +1,415 @@
+<mxfile host="app.diagrams.net" modified="2024-01-01T00:00:00.000Z" agent="5.0 (Macintosh)" etag="abc123" version="22.1.16" type="device">
+  <diagram name="Backend Event Architecture" id="backend-event-architecture">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        
+        <mxCell id="title" value="유리병 속 이야기 - 백엔드 이벤트 아키텍처" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="340" y="10" width="500" height="30" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="client-layer" value="클라이언트 계층" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=16;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="40" y="60" width="340" height="80" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="frontend" value="프론트엔드" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="60" y="90" width="90" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="websocket-client" value="웹소켓 클라이언트" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="170" y="90" width="100" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="mobile-app" value="모바일 앱" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="290" y="90" width="80" height="40" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="msa-services" value="MSA 서비스 계층" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=16;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="40" y="160" width="1080" height="200" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="frontend-service" value="프론트엔드 서비스" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="190" width="120" height="120" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="frontend-api" value="정적 파일" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="70" y="210" width="100" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="frontend-routing" value="라우팅" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="70" y="240" width="100" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="member-service" value="회원 서비스" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="200" y="190" width="120" height="120" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="member-api" value="회원 API" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="210" y="210" width="100" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="member-logout-producer" value="로그아웃 생산자" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#b85450;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="210" y="240" width="100" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="member-consumer" value="유리병 소비자" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ccffcc;strokeColor=#82b366;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="210" y="270" width="100" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="bottle-service" value="유리병 서비스" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="340" y="190" width="140" height="120" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="bottle-api" value="유리병 API" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="350" y="210" width="120" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="bottle-flow-producer" value="흐름 생산자" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#b85450;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="350" y="240" width="55" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="bottle-reply-producer" value="답글 생산자" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#b85450;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="410" y="240" width="60" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="bottle-consumer" value="흐름 소비자" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ccffcc;strokeColor=#82b366;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="350" y="270" width="55" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="bottle-geo-redis" value="GEO 레디스" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="410" y="270" width="60" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="realtime-service" value="실시간 서비스" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="500" y="190" width="180" height="120" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="websocket-config" value="웹소켓 설정" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="510" y="210" width="70" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="location-controller" value="위치 컨트롤러" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="590" y="210" width="80" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="realtime-consumers" value="카프카 소비자들" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ccffcc;strokeColor=#82b366;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="510" y="240" width="70" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="websocket-publisher" value="웹소켓 발행자" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#b85450;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="590" y="240" width="80" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="session-manager" value="세션 관리자" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="510" y="270" width="70" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="live-user-producer" value="실시간 사용자 생산자" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#b85450;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="590" y="270" width="80" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="batch-service" value="배치 서비스" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="700" y="190" width="140" height="120" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="batch-scheduler" value="배치 작업" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="710" y="210" width="120" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="expired-reader" value="만료 리더" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ccffcc;strokeColor=#82b366;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="710" y="240" width="55" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="ws-disconnect-producer" value="웹소켓 해제" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#b85450;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="775" y="240" width="55" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="weather-producer" value="날씨 생산자" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#b85450;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="710" y="270" width="55" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="redis-ops" value="레디스 작업" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="775" y="270" width="55" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="weather-service" value="날씨 BGM 서비스" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="860" y="190" width="140" height="120" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="weather-api" value="날씨 API" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="870" y="210" width="120" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="weather-consumer" value="날씨 소비자" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ccffcc;strokeColor=#82b366;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="870" y="240" width="55" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="weather-event-producer" value="이벤트 생산자" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#b85450;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="935" y="240" width="55" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="external-api" value="외부 API" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="870" y="270" width="55" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="bgm-logic" value="BGM 로직" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="935" y="270" width="55" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="kafka-cluster" value="Apache Kafka 이벤트 브로커" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=16;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="40" y="380" width="1080" height="100" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="member-logout-topic" value="회원.로그아웃" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#b85450;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="60" y="410" width="90" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="bottle-flow-topic" value="유리병.흐름" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#b85450;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="160" y="410" width="80" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="bottle-reply-topic" value="유리병.답글" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#b85450;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="250" y="410" width="80" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="live-user-topic" value="실시간.사용자수" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#b85450;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="340" y="410" width="100" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="location-topic" value="실시간.위치" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#b85450;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="450" y="410" width="100" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="disconnect-topic" value="배치.연결해제" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#b85450;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="560" y="410" width="100" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="weather-topic" value="날씨.업데이트" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#b85450;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="670" y="410" width="90" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="batch-weather-topic" value="배치.날씨" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#b85450;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="770" y="410" width="90" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="bottle-flow-re-topic" value="유리병.흐름.재실행" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#b85450;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="60" y="445" width="120" height="25" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="redis-cluster" value="Redis 데이터 저장소" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=16;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="40" y="500" width="1080" height="80" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="ws-sessions" value="웹소켓_세션&#xa;(정렬집합)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="60" y="530" width="80" height="35" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="member-geo" value="지리:회원&#xa;(지리정보)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="150" y="530" width="80" height="35" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="bottle-geo" value="지리:유리병&#xa;(지리정보)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="240" y="530" width="80" height="35" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="member-jwt" value="회원:가입JWT&#xa;(문자열)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="330" y="530" width="90" height="35" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="common-codes" value="공통 코드&#xa;(해시)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="430" y="530" width="90" height="35" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="database-layer" value="데이터베이스 계층" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=16;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="40" y="600" width="500" height="80" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="mysql-db" value="MySQL 데이터베이스" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="60" y="630" width="100" height="35" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="member-table" value="회원 테이블" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="170" y="630" width="80" height="35" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="bottle-table" value="유리병 테이블" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="260" y="630" width="80" height="35" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="weather-table" value="날씨 테이블" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="350" y="630" width="80" height="35" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="batch-table" value="배치 이력" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="440" y="630" width="80" height="35" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="external-services" value="외부 서비스" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=16;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="560" y="600" width="280" height="80" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="weather-external" value="날씨 API" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="580" y="630" width="80" height="35" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="oauth-provider" value="OAuth2 제공자" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="670" y="630" width="90" height="35" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="push-service" value="푸시 서비스" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="770" y="630" width="60" height="35" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="legend" value="이벤트 흐름 범례" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=14;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="860" y="500" width="260" height="180" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="producer-legend" value="🔴 카프카 생산자" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="880" y="525" width="110" height="15" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="consumer-legend" value="🟢 카프카 소비자" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="880" y="545" width="110" height="15" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="websocket-legend" value="🔵 웹소켓 푸시" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="880" y="565" width="110" height="15" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="redis-legend" value="🟣 레디스 작업" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="880" y="585" width="110" height="15" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="api-legend" value="🟡 REST API" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="880" y="605" width="110" height="15" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="external-legend" value="⚪ 외부 서비스" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="880" y="625" width="110" height="15" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="batch-legend" value="⚫ 배치 프로세스" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="880" y="645" width="110" height="15" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="flow-notes" value="주요 이벤트 흐름:&#xa;1. 로그인 → 웹소켓 연결 → 세션 레디스&#xa;2. 위치 업데이트 → 카프카 → 지리 레디스&#xa;3. 유리병 작성 → 카프카 → 회원 소비자&#xa;4. 답글 → 카프카 → 사용자 웹소켓 푸시&#xa;5. 로그아웃 → 카프카 → 세션 정리&#xa;6. 배치 → 날씨 API → 웹소켓 푸시&#xa;7. 실시간 사용자 수 → 레디스 → 전체 방송" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=11;fillColor=#f5f5f5;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="1000" y="525" width="110" height="140" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="websocket-to-realtime" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#0066cc;strokeWidth=2;" parent="1" source="websocket-client" target="realtime-service" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="220" y="140" as="sourcePoint"/>
+            <mxPoint x="590" y="190" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="member-logout-flow" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#cc0000;" parent="1" source="member-logout-producer" target="member-logout-topic" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="265" as="sourcePoint"/>
+            <mxPoint x="105" y="410" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="bottle-flow-event" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#cc0000;" parent="1" source="bottle-flow-producer" target="bottle-flow-topic" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="377" y="265" as="sourcePoint"/>
+            <mxPoint x="200" y="410" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="bottle-reply-event" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#cc0000;" parent="1" source="bottle-reply-producer" target="bottle-reply-topic" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="440" y="265" as="sourcePoint"/>
+            <mxPoint x="290" y="410" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="live-user-event" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#cc0000;" parent="1" source="live-user-producer" target="live-user-topic" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="630" y="295" as="sourcePoint"/>
+            <mxPoint x="390" y="410" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="batch-disconnect-event" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#cc0000;" parent="1" source="ws-disconnect-producer" target="disconnect-topic" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="802" y="265" as="sourcePoint"/>
+            <mxPoint x="610" y="410" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="weather-producer-event" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#cc0000;" parent="1" source="weather-event-producer" target="weather-topic" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="962" y="265" as="sourcePoint"/>
+            <mxPoint x="715" y="410" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="logout-consume-flow" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;strokeColor=#00cc00;" parent="1" source="member-logout-topic" target="realtime-consumers" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="105" y="410" as="sourcePoint"/>
+            <mxPoint x="510" y="265" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="reply-consume-flow" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#00cc00;" parent="1" source="bottle-reply-topic" target="realtime-consumers" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="290" y="410" as="sourcePoint"/>
+            <mxPoint x="545" y="265" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="weather-consume-flow" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=1;entryDx=0;entryDy=0;strokeColor=#00cc00;" parent="1" source="weather-topic" target="realtime-consumers" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="715" y="410" as="sourcePoint"/>
+            <mxPoint x="580" y="265" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="bottle-flow-consume" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#00cc00;" parent="1" source="bottle-flow-topic" target="member-consumer" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="200" y="410" as="sourcePoint"/>
+            <mxPoint x="260" y="295" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="websocket-push-flow" value="실시간 푸시" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#0066cc;strokeWidth=2;" parent="1" source="websocket-publisher" target="websocket-client" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="630" y="240" as="sourcePoint"/>
+            <mxPoint x="220" y="130" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="session-redis-connection" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#9933ff;" parent="1" source="session-manager" target="ws-sessions" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="545" y="295" as="sourcePoint"/>
+            <mxPoint x="100" y="530" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="geo-redis-connection" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#9933ff;" parent="1" source="bottle-geo-redis" target="bottle-geo" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="440" y="295" as="sourcePoint"/>
+            <mxPoint x="280" y="530" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="services-to-db" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#ff9900;" parent="1" source="msa-services" target="database-layer" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="580" y="360" as="sourcePoint"/>
+            <mxPoint x="290" y="600" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="weather-external-connection" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#666666;" parent="1" source="external-api" target="weather-external" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="897" y="295" as="sourcePoint"/>
+            <mxPoint x="620" y="630" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
