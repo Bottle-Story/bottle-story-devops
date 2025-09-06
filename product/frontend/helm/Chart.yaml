@@ -1,0 +1,17 @@
+apiVersion: v2
+name: bottle-story-frontend-prod
+description: Bottle Story frontend Service for Production Environment
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+keywords:
+  - bottle-story
+  - frontend
+  - microservice
+  - production
+home: https://bottle-story.com
+sources:
+  - https://github.com/Bottle-Story/bottle-story-frontend
+maintainers:
+  - name: DevOps Team
+    email: devops@bottle-story.com

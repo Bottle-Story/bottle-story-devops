@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: bottle-story-prod
+  labels:
+    name: bottle-story-prod
+    environment: production
+    project: bottle-story
+    managed-by: kubernetes
+  annotations:
+    description: "Bottle Story Production Environment Namespace"
+    team: "devops"
+    contact: "devops@bottle-story.com"
+    cost-center: "engineering"
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: bottle-story-prod-quota
+  namespace: bottle-story-prod
+spec:
+  hard:
+    requests.cpu: "20"
+    requests.memory: 40Gi
+    limits.cpu: "40"
+    limits.memory: 80Gi
+    persistentvolumeclaims: "20"
+    services: "20"
+    secrets: "20"
+    configmaps: "20"
+    pods: "50"
+---
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: bottle-story-prod-limits
+  namespace: bottle-story-prod
+spec:
+  limits:
+  - default:
+      memory: "1Gi"
+      cpu: "500m"
+    defaultRequest:
+      memory: "256Mi"
+      cpu: "100m"
+    type: Container
+  - max:
+      memory: "4Gi"
+      cpu: "2"
+    min:
+      memory: "64Mi"
+      cpu: "50m"
+    type: Container

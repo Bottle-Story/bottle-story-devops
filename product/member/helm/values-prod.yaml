@@ -1,0 +1,54 @@
+namespace: bottle-story-prod
+
+image:
+  repository: ${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-2.amazonaws.com/bottle-story-member-prod
+  tag: latest
+  pullPolicy: Always
+
+replicaCount: 3
+
+labels:
+  part-of: backend-part
+  component: backend-bottle-member
+  name: backend-bottle-member-pod-name
+  instance: backend-bottle-member-pod-instance
+  version: "1.0.0"
+  managedBy: kubectl
+
+containerPort: 8080
+
+resources:
+  limits:
+    memory: "1Gi"
+    cpu: "800m"
+  requests:
+    memory: "512Mi"
+    cpu: "400m"
+
+readinessPath: /actuator/health/readiness
+livenessPath: /actuator/health/liveness
+
+envFrom:
+  configMap: backend-bottle-member-config
+  secret: backend-bottle-member-secret
+
+service:
+  name: backend-bottle-member-service
+  port: 80
+  targetPort: 8080
+  selector:
+    partOf: backend-part
+    component: backend-bottle-member
+    name: backend-bottle-member-pod-name
+    instance: backend-bottle-member-pod-instance
+    version: "1.0.0"
+    managedBy: kubectl
+
+hpa:
+  enabled: true
+  name: backend-bottle-member-hpa
+  targetDeployment: backend-bottle-member-pod
+  minReplicas: 3
+  maxReplicas: 10
+  cpuUtilization: 70
+  memoryUtilization: 70

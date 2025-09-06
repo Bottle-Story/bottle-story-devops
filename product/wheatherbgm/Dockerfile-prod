@@ -1,0 +1,5 @@
+FROM openjdk:17
+COPY bottle-wheatherbgm-prod-0.0.1-SNAPSHOT.jar /usr/src/myapp/bottle-wheatherbgm-prod-0.0.1-SNAPSHOT.jar
+WORKDIR /usr/src/myapp
+ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-jar", "/usr/src/myapp/bottle-wheatherbgm-prod-0.0.1-SNAPSHOT.jar"]
+EXPOSE 8080
