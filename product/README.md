@@ -120,22 +120,7 @@ triggers {
 - 환경 변수를 통한 주입
 - AWS Secrets Manager 통합 (선택사항)
 
-## 📊 모니터링 및 로깅
 
-### Health Checks
-- Readiness Probe: `/actuator/health/readiness`
-- Liveness Probe: `/actuator/health/liveness`
-- Startup Probe: 초기 기동 상태 확인
-
-### 메트릭 수집
-- Prometheus 메트릭 노출: `/actuator/prometheus`
-- HPA를 통한 자동 스케일링
-- 리소스 사용량 모니터링
-
-### 로깅
-- 구조화된 JSON 로그 출력
-- ELK Stack 또는 CloudWatch Logs 수집
-- 오류 추적 및 알림
 
 ## 🔄 운영 가이드
 
