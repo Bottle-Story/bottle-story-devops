@@ -1,0 +1,49 @@
+namespace: bottle-story-prod
+
+image:
+  repository: ${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-2.amazonaws.com/bottle-story/frontend
+  tag: latest
+  pullPolicy: Always
+
+replicaCount: 2
+
+labels:
+  part-of: bottle-story-backend
+  component: frontend-service
+  name: frontend-service-pod
+  instance: frontend-service-prod
+  version: "1.0.0"
+  managedBy: helm
+  environment: production
+
+containerPort: 3000
+
+resources:
+  limits:
+    memory: "1Gi"
+    cpu: "800m"
+  requests:
+    memory: "512Mi"
+    cpu: "400m"
+
+readinessPath: /actuator/health/readiness
+livenessPath: /actuator/health/liveness
+
+envFrom:
+  configMap: frontend-service-config
+  secret: frontend-service-secret
+
+service:
+  name: frontend-service
+  port: 80
+  targetPort: 3000
+  type: ClusterIP
+
+hpa:
+  enabled: true
+  name: frontend-service-hpa
+  targetDeployment: frontend-service-deployment
+  minReplicas: 2
+  maxReplicas: 8
+  cpuUtilization: 70
+  memoryUtilization: 80
